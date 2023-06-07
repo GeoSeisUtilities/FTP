@@ -303,7 +303,7 @@
         <Option type="List" name="FORMULA">
           <Option type="Map">
             <Option type="int" value="2" name="source"/>
-            <Option type="QString" value="if( &quot;D_A_______&quot; > 70, 1, if(&quot;D_A_______&quot; &lt;= 70 and &quot;D_A_______&quot; > 40, 5, if( &quot;D_A_______&quot; &lt; 40, 10, CASE WHEN substr(&quot;_K_N_&quot;,1,3)='nor' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='Nor' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='NOR' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='nrm' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='Nrm' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='NRM' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='est' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='Est' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='EST' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='ext' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='Ext' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='EXT' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='dis' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='Dis' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='DIS' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,1)='n' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,1)='N' THEN 5 WHEN substr(&quot;_K_N_&quot;,1,3)='tra' THEN 1 WHEN substr(&quot;_K_N_&quot;,1,3)='Tra' THEN 1 WHEN substr(&quot;_K_N_&quot;,1,3)='TRA' THEN 1 WHEN substr(&quot;_K_N_&quot;,1,3)='str' THEN 1 WHEN substr(&quot;_K_N_&quot;,1,3)='Str' THEN 1 WHEN substr(&quot;_K_N_&quot;,1,3)='STR' THEN 1 WHEN substr(&quot;_K_N_&quot;,1,2)='ss' THEN 1 WHEN substr(&quot;_K_N_&quot;,1,2)='Ss' THEN 1 WHEN substr(&quot;_K_N_&quot;,1,2)='SS' THEN 1 ELSE 10 END)))" name="static_value"/>
+            <Option type="QString" value="if( &quot;D_A_______&quot; > 70, &quot;Length(km)&quot;/10, if(&quot;D_A_______&quot; &lt;= 70 and &quot;D_A_______&quot; > 40, &quot;Length(km)&quot;/2, if( &quot;D_A_______&quot; &lt; 40, &quot;Length(km)&quot;, CASE WHEN substr(&quot;_K_N_&quot;,1,3)='nor' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='Nor' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='NOR' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='nrm' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='Nrm' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='NRM' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='est' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='Est' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='EST' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='ext' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='Ext' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='EXT' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='dis' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='Dis' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='DIS' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,1)='n' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,1)='N' THEN &quot;Length(km)&quot;/2 WHEN substr(&quot;_K_N_&quot;,1,3)='tra' THEN &quot;Length(km)&quot;/10 WHEN substr(&quot;_K_N_&quot;,1,3)='Tra' THEN &quot;Length(km)&quot;/10 WHEN substr(&quot;_K_N_&quot;,1,3)='TRA' THEN &quot;Length(km)&quot;/10 WHEN substr(&quot;_K_N_&quot;,1,3)='str' THEN &quot;Length(km)&quot;/10 WHEN substr(&quot;_K_N_&quot;,1,3)='Str' THEN &quot;Length(km)&quot;/10 WHEN substr(&quot;_K_N_&quot;,1,3)='STR' THEN &quot;Length(km)&quot;/10 WHEN substr(&quot;_K_N_&quot;,1,2)='ss' THEN &quot;Length(km)&quot;/10 WHEN substr(&quot;_K_N_&quot;,1,2)='Ss' THEN &quot;Length(km)&quot;/10 WHEN substr(&quot;_K_N_&quot;,1,2)='SS' THEN &quot;Length(km)&quot;/10 ELSE &quot;Length(km)&quot; END)))" name="static_value"/>
           </Option>
         </Option>
         <Option type="List" name="INPUT">
@@ -2272,7 +2272,33 @@
       <Option type="double" value="140.13058764439938" name="component_width"/>
       <Option name="dependencies"/>
       <Option type="QString" value="native:mergevectorlayers_1" name="id"/>
-      <Option name="outputs"/>
+      <Option type="Map" name="outputs">
+        <Option type="Map" name="tst">
+          <Option type="QString" value="native:mergevectorlayers_1" name="child_id"/>
+          <Option type="QString" value="" name="color"/>
+          <Option type="Map" name="comment">
+            <Option type="QString" value="" name="color"/>
+            <Option type="QString" value="" name="component_description"/>
+            <Option type="double" value="60" name="component_height"/>
+            <Option type="double" value="0" name="component_pos_x"/>
+            <Option type="double" value="0" name="component_pos_y"/>
+            <Option type="double" value="100" name="component_width"/>
+            <Option type="bool" value="true" name="outputs_collapsed"/>
+            <Option type="bool" value="true" name="parameters_collapsed"/>
+          </Option>
+          <Option type="QString" value="tst" name="component_description"/>
+          <Option type="double" value="30" name="component_height"/>
+          <Option type="double" value="0" name="component_pos_x"/>
+          <Option type="double" value="0" name="component_pos_y"/>
+          <Option type="double" value="200" name="component_width"/>
+          <Option type="invalid" name="default_value"/>
+          <Option type="bool" value="false" name="mandatory"/>
+          <Option type="QString" value="tst" name="name"/>
+          <Option type="QString" value="OUTPUT" name="output_name"/>
+          <Option type="bool" value="true" name="outputs_collapsed"/>
+          <Option type="bool" value="true" name="parameters_collapsed"/>
+        </Option>
+      </Option>
       <Option type="bool" value="true" name="outputs_collapsed"/>
       <Option type="bool" value="true" name="parameters_collapsed"/>
       <Option type="Map" name="params">
@@ -2764,7 +2790,7 @@
       <Option type="QString" value="native:singlesidedbuffer_1" name="id"/>
       <Option name="outputs"/>
       <Option type="bool" value="true" name="outputs_collapsed"/>
-      <Option type="bool" value="true" name="parameters_collapsed"/>
+      <Option type="bool" value="false" name="parameters_collapsed"/>
       <Option type="Map" name="params">
         <Option type="List" name="DISTANCE">
           <Option type="Map">
@@ -2940,10 +2966,10 @@
     <Option type="QString" value="Depth_Km" name="Depthfieldkm"/>
     <Option type="QString" value="Dip" name="Dipangle"/>
     <Option type="QString" value="DipDir" name="Dipdirectionfield"/>
-    <Option type="QString" value="bulletin2_2a5d6877_86e9_4126_a3f1_93072dfcff3c" name="Eqs"/>
-    <Option type="QString" value="Faglie_provaCopy_1a6fade7_ff6c_4b01_8fa6_4b742cbcd5c7" name="Faults"/>
-    <Option type="QString" value="Kinematics" name="Kinematic"/>
-    <Option type="QgsProcessingOutputLayerDefinition" name="native:fieldcalculator_24:ikgmu">
+    <Option type="QString" value="bulletin_rev_53d77779_be5c_42d0_9711_8dc004f1f5a7" name="Eqs"/>
+    <Option type="QString" value="Host_faults_Lavecchia_5d3587ae_7ba7_4110_a615_c93cfd82afab" name="Faults"/>
+    <Option type="QString" value="Kinem" name="Kinematic"/>
+    <Option type="QgsProcessingOutputLayerDefinition" name="native:fieldcalculator_1:rtshdf">
       <Option type="Map">
         <Option type="Map" name="create_options">
           <Option type="QString" value="System" name="fileEncoding"/>
@@ -2964,18 +2990,6 @@
           <Option type="bool" value="true" name="active"/>
           <Option type="int" value="1" name="type"/>
           <Option type="QString" value="C:/Users/Utente/AppData/Roaming/QGIS/QGIS3/profiles/default/processing/outputs/buff.shp" name="val"/>
-        </Option>
-      </Option>
-    </Option>
-    <Option type="QgsProcessingOutputLayerDefinition" name="native:joinattributesbylocation_2:ghun">
-      <Option type="Map">
-        <Option type="Map" name="create_options">
-          <Option type="QString" value="System" name="fileEncoding"/>
-        </Option>
-        <Option type="Map" name="sink">
-          <Option type="bool" value="true" name="active"/>
-          <Option type="int" value="1" name="type"/>
-          <Option type="QString" value="TEMPORARY_OUTPUT" name="val"/>
         </Option>
       </Option>
     </Option>
@@ -3099,6 +3113,24 @@
       <Option type="QString" value="native:fieldcalculator_30:buffer with estimated parameters" name="name"/>
       <Option type="QString" value="sink" name="parameter_type"/>
       <Option type="bool" value="true" name="supports_append"/>
+      <Option type="bool" value="true" name="supports_non_file_outputs"/>
+    </Option>
+    <Option type="Map" name="native:mergevectorlayers_1:tst">
+      <Option type="bool" value="true" name="create_by_default"/>
+      <Option type="int" value="-1" name="data_type"/>
+      <Option type="invalid" name="default"/>
+      <Option type="invalid" name="defaultGui"/>
+      <Option type="QString" value="tst" name="description"/>
+      <Option type="int" value="0" name="flags"/>
+      <Option type="QString" value="" name="help"/>
+      <Option type="Map" name="metadata">
+        <Option type="QString" value="native:mergevectorlayers_1" name="_modelChildId"/>
+        <Option type="QString" value="tst" name="_modelChildOutputName"/>
+        <Option type="QString" value="native" name="_modelChildProvider"/>
+      </Option>
+      <Option type="QString" value="native:mergevectorlayers_1:tst" name="name"/>
+      <Option type="QString" value="sink" name="parameter_type"/>
+      <Option type="bool" value="false" name="supports_append"/>
       <Option type="bool" value="true" name="supports_non_file_outputs"/>
     </Option>
   </Option>

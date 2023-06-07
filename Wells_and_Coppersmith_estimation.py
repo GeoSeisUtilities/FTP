@@ -2,7 +2,7 @@
 Model exported as python.
 Name : Wells and Coppersmith estimation
 Group : 
-With QGIS : 32805
+With QGIS : 33002
 """
 
 from qgis.core import QgsProcessing
@@ -25,6 +25,7 @@ class WellsAndCoppersmithEstimation(QgsProcessingAlgorithm):
         self.addParameter(QgsProcessingParameterField('Dipdirectionfield', 'Dip direction', type=QgsProcessingParameterField.Any, parentLayerParameterName='Faults', allowMultiple=False, defaultValue=None))
         self.addParameter(QgsProcessingParameterField('Kinematic', 'Kinematic', type=QgsProcessingParameterField.String, parentLayerParameterName='Faults', allowMultiple=False, defaultValue=None))
         self.addParameter(QgsProcessingParameterFeatureSink('BufferWithEstimatedParameters', 'buffer with estimated parameters', type=QgsProcessing.TypeVectorAnyGeometry, createByDefault=True, supportsAppend=True, defaultValue=None))
+        self.addParameter(QgsProcessingParameterFeatureSink('Tst', 'tst', type=QgsProcessing.TypeVectorAnyGeometry, createByDefault=True, defaultValue=None))
 
     def processAlgorithm(self, parameters, context, model_feedback):
         # Use a multi-step feedback, so that individual child algorithm progress reports are adjusted for the
@@ -33,7 +34,7 @@ class WellsAndCoppersmithEstimation(QgsProcessingAlgorithm):
         results = {}
         outputs = {}
 
-        # Rinomina campo (Profondità)
+        # Rinomina campo (ProfonditÃ )
         alg_params = {
             'FIELD': parameters['Depthfieldkm'],
             'INPUT': parameters['Eqs'],
@@ -427,9 +428,10 @@ class WellsAndCoppersmithEstimation(QgsProcessingAlgorithm):
         alg_params = {
             'CRS': None,
             'LAYERS': [outputs['EstraiTramiteEspressioneNo_flip']['OUTPUT'],outputs['InvertiVersoLinea']['OUTPUT']],
-            'OUTPUT': QgsProcessing.TEMPORARY_OUTPUT
+            'OUTPUT': parameters['Tst']
         }
         outputs['FondiVettoriMerge'] = processing.run('native:mergevectorlayers', alg_params, context=context, feedback=feedback, is_child_algorithm=True)
+        results['Tst'] = outputs['FondiVettoriMerge']['OUTPUT']
 
         feedback.setCurrentStep(27)
         if feedback.isCanceled():
@@ -494,7 +496,7 @@ class WellsAndCoppersmithEstimation(QgsProcessingAlgorithm):
             'FIELD_NAME': 'BuffDim',
             'FIELD_PRECISION': 0,
             'FIELD_TYPE': 1,  # Intero (32 bit)
-            'FORMULA': 'if( "D_A_______" > 70, 1, if("D_A_______" <= 70 and "D_A_______" > 40, 5, if( "D_A_______" < 40, 10, CASE WHEN substr("_K_N_",1,3)=\'nor\' THEN 5 WHEN substr("_K_N_",1,3)=\'Nor\' THEN 5 WHEN substr("_K_N_",1,3)=\'NOR\' THEN 5 WHEN substr("_K_N_",1,3)=\'nrm\' THEN 5 WHEN substr("_K_N_",1,3)=\'Nrm\' THEN 5 WHEN substr("_K_N_",1,3)=\'NRM\' THEN 5 WHEN substr("_K_N_",1,3)=\'est\' THEN 5 WHEN substr("_K_N_",1,3)=\'Est\' THEN 5 WHEN substr("_K_N_",1,3)=\'EST\' THEN 5 WHEN substr("_K_N_",1,3)=\'ext\' THEN 5 WHEN substr("_K_N_",1,3)=\'Ext\' THEN 5 WHEN substr("_K_N_",1,3)=\'EXT\' THEN 5 WHEN substr("_K_N_",1,3)=\'dis\' THEN 5 WHEN substr("_K_N_",1,3)=\'Dis\' THEN 5 WHEN substr("_K_N_",1,3)=\'DIS\' THEN 5 WHEN substr("_K_N_",1,1)=\'n\' THEN 5 WHEN substr("_K_N_",1,1)=\'N\' THEN 5 WHEN substr("_K_N_",1,3)=\'tra\' THEN 1 WHEN substr("_K_N_",1,3)=\'Tra\' THEN 1 WHEN substr("_K_N_",1,3)=\'TRA\' THEN 1 WHEN substr("_K_N_",1,3)=\'str\' THEN 1 WHEN substr("_K_N_",1,3)=\'Str\' THEN 1 WHEN substr("_K_N_",1,3)=\'STR\' THEN 1 WHEN substr("_K_N_",1,2)=\'ss\' THEN 1 WHEN substr("_K_N_",1,2)=\'Ss\' THEN 1 WHEN substr("_K_N_",1,2)=\'SS\' THEN 1 ELSE 10 END)))',
+            'FORMULA': 'if( "D_A_______" > 70, "Length(km)"/10, if("D_A_______" <= 70 and "D_A_______" > 40, "Length(km)"/2, if( "D_A_______" < 40, "Length(km)", CASE WHEN substr("_K_N_",1,3)=\'nor\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'Nor\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'NOR\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'nrm\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'Nrm\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'NRM\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'est\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'Est\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'EST\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'ext\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'Ext\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'EXT\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'dis\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'Dis\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'DIS\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,1)=\'n\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,1)=\'N\' THEN "Length(km)"/2 WHEN substr("_K_N_",1,3)=\'tra\' THEN "Length(km)"/10 WHEN substr("_K_N_",1,3)=\'Tra\' THEN "Length(km)"/10 WHEN substr("_K_N_",1,3)=\'TRA\' THEN "Length(km)"/10 WHEN substr("_K_N_",1,3)=\'str\' THEN "Length(km)"/10 WHEN substr("_K_N_",1,3)=\'Str\' THEN "Length(km)"/10 WHEN substr("_K_N_",1,3)=\'STR\' THEN "Length(km)"/10 WHEN substr("_K_N_",1,2)=\'ss\' THEN "Length(km)"/10 WHEN substr("_K_N_",1,2)=\'Ss\' THEN "Length(km)"/10 WHEN substr("_K_N_",1,2)=\'SS\' THEN "Length(km)"/10 ELSE "Length(km)" END)))',
             'INPUT': outputs['CalcolatoreDiCampiLunghezza']['OUTPUT'],
             'OUTPUT': QgsProcessing.TEMPORARY_OUTPUT
         }
@@ -566,14 +568,14 @@ class WellsAndCoppersmithEstimation(QgsProcessingAlgorithm):
         if feedback.isCanceled():
             return {}
 
-        # Unire gli attributi per località (sintesi)
+        # Unire gli attributi per localitÃ  (sintesi)
         alg_params = {
             'DISCARD_NONMATCHING': False,
             'INPUT': outputs['BufferLatoSingolo']['OUTPUT'],
             'JOIN': outputs['CalcolatoreCampiSpessoreSismogenico']['OUTPUT'],
             'JOIN_FIELDS': ['D_F_______'],
             'PREDICATE': [0,1],  # interseca,contiene
-            'SUMMARIES': [2,3],  # min,max
+            'SUMMARIES': [2,3],  # min,massimo
             'OUTPUT': QgsProcessing.TEMPORARY_OUTPUT
         }
         outputs['UnireGliAttributiPerLocalitSintesi'] = processing.run('qgis:joinbylocationsummary', alg_params, context=context, feedback=feedback, is_child_algorithm=True)
